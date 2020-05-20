@@ -12,7 +12,7 @@ def filter_hero(hero_name):
     elif len(filtered_heroes) == 0:
         return False
     else:
-        return ["multiple", filtered_heroes]
+        return "multiple", filtered_heroes
 
 def is_valid_hero(hero_name):
     #return (hero_name in heroes)
@@ -37,8 +37,10 @@ async def hero(ctx, *, arg=None):
         await ctx.send(f"Please enter hero!")    
     elif arg == None:
         await ctx.send(f"Hero doesn't exist!")  
-    elif is_valid_hero(arg) == True and filter_hero(arg) == "multiple":
+    elif is_valid_hero(arg) == True and type(filter_hero(arg)) == tuple:
         print(filter_hero(arg))  
+        print(filter_hero(arg)[1])
+        await ctx.send(f'Please narrow your search for {filter_hero(arg)[1]}')
     elif is_valid_hero(arg) == True:      
         filter_hero_name = filter_hero(arg)
         dotabuff_hero_name = filter_hero_name.replace(" ", "-").lower()
