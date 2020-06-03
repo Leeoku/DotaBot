@@ -162,5 +162,50 @@ class HeroCommand(commands.Cog):
         embed.set_footer(text="DotaBot")
         await ctx.send(embed=embed)
 
+    # @commands.command()
+    # async def profilepic(self, ctx, *, image):
+    #     get_user = await Doto().by_id(ctx.author.id).get()
+    #     get_user['profile_image'] = image
+    #     await Doto().by_id(ctx.author.id).update(get_user)
+    #     return await ctx.send('Profile image updated')
+
+
+        # await ctx.send(f"User: {ctx.author.name}\n"
+        #                f"Pos: #5\n"
+        #                f"Hero Pool: Crystal Madien, Dazzle\n"
+        #                f"Most Played Hero: Crystal Madien\n"
+        #                f"Least Played Hero: Juggernaut")
+
+    # @commands.command()
+    # async def steamprofile(self, ctx, id: str):
+    #     api = d2api.APIWrapper(api_key = steam_api)
+    #     snapbot = api.get_player_summaries(account_ids=[f"{id}"])
+    #     print(snapbot)
+    #     find_number = str(snapbot['players'][0]['steam_account'])
+    #     print(find_number)
+    #     check_for_number = re.compile(r'\d+')
+    #     num_output = check_for_number.findall(find_number)
+    #     print(num_output[0])
+
+    # @commands.command()
+    # async def test(self, ctx, name: str):
+    #     result = await tracker(name)
+    #     api = d2api.APIWrapper(api_key = steam_api)
+    #     snapbot = api.get_player_summaries(account_ids=[f"{result}"])
+    #     print(snapbot)
+    #     find_number = str(snapbot['players'][0]['steam_account'])
+    #     print(find_number)
+    #     check_for_number = re.compile(r'\d+')
+    #     num_output = check_for_number.findall(find_number)
+    #     print(num_output[0])
+                    
+
+    # @commands.command()
+    # async def test(self, ctx):
+    #     print(f"\nGUILD NAME: {ctx.guild}")
+    #     print(f"\nGUILD ID: {ctx.guild.id}")
+    #     print(f"\nAUTHOR ID: {ctx.author.id}")
+    #     print(f"\nAUTHOR:{ctx.author}")
+    #     print(f"\nCHANNEL ID: {ctx.channel.id}")
 def setup(bot):
     bot.add_cog(HeroCommand(bot))

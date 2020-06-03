@@ -18,7 +18,7 @@ class Doto:
         return self
 
     @property
-    def monogo_dict(self):
+    def mongo_dict(self):
         d = {}
 
         if hasattr(self, 'id'):
@@ -27,22 +27,23 @@ class Doto:
         return d
 
     async def get(self): 
-        return await dbs['dota'].find_one(self.monogo_dict)
+        return await dbs['dota'].find_one(self.mongo_dict)
 
     async def push(self, _set):
-        await dbs['dota'].update_one(self.monogo_dict, {'$push':_set})
+        await dbs['dota'].update_one(self.mongo_dict, {'$push':_set})
 
     async def pull(self, _set):
-        await dbs['dota'].update_one(self.monogo_dict, {'$pull':_set})
+        await dbs['dota'].update_one(self.mongo_dict, {'$pull':_set})
 
     async def update(self, _set):
-        await dbs['dota'].update_one(self.monogo_dict, {'$set': _set})
+        await dbs['dota'].update_one(self.mongo_dict, {'$set': _set})
 
     async def create(self, data):
         await dbs['dota'].insert_one(data)
 
-    async def delete(self):
-        await dbs['dota'].delete_one(self.monogo_dict)
+    async def delete(self, steam_name):
+        await dbs['dota'].delete_one(self.mongo_dict)
+        #await dbs['dota'].delete_one(steam_name)
 
     async def get_all(self):
         return await db['dota'].find().to_list(length=100000)
