@@ -27,7 +27,7 @@ timestamp = datetime.utcnow()
 # !leaderboard [User_Id] {global/server/bot/friends} shows leaderboad of selected info (future)
 # !info [User_Id/Discord] shows general information about user (priority)
 # !recent_games [User_Id] shows recent game info for user (future)
-# !my_heros [User_Id] shows best heros, along with info for them, for selected user
+# !myprofile [User_Id] shows best heros, along with info for them, for selected user (priority)
 # !my_items {uses/wins/kd/econ} best items for selected filter/user (future)
 
 async def tracker(name):
@@ -44,8 +44,6 @@ async def tracker(name):
         return num_output[7]
     except IndexError:
         await ctx.send('Cannot find user. Make sure profile is publically displayed')
-
-
 
 class HeroCommand(commands.Cog):
     def __init__(self, bot):
@@ -71,14 +69,10 @@ class HeroCommand(commands.Cog):
 
         if len(filter_hero(arg)) == 1:
             filter_hero_name = filter_hero(arg)[0]
-
             dotabuff_hero_name = filter_hero_name.replace(" ", "-").lower()
-
             dotawiki_hero_name = filter_hero_name.replace(" ","_").title()
-            
             dotabuff_link = f"https://www.dotabuff.com/heroes/{dotabuff_hero_name}"
             dotawiki_link = f"https://dota2.gamepedia.com/{dotawiki_hero_name}"
-
             await ctx.send(f'Dotabuff: {dotabuff_link}\n DotaWiki: {dotawiki_link}') # s
             return
             
@@ -102,7 +96,6 @@ class HeroCommand(commands.Cog):
             return
 
         else: # No matched heros
-            # await ctx.send(f"Please refine your search!")
             await ctx.send('No matched heroes')
 
     @commands.command()
@@ -116,7 +109,7 @@ class HeroCommand(commands.Cog):
         if heroname.lower() in current_heroes:
             return await ctx.send('Hero already in pool')
         #Check to see if more than 5 heroes
-        if len(current_heroes) > 5:
+        if len(current_heroes) >= 5:
             return await ctx.send('You have already assigned 5 heroes to yourself')
         #Validates if user registered, then adds hero
         if get_user:
@@ -138,9 +131,10 @@ class HeroCommand(commands.Cog):
             return await ctx.send('Current hero pool empty')
         #Validates if user registered
         if get_user:
-            if ValueError:
+            try:
+                get_user['top_5_heroes'].remove(heroname.title())
+            except ValueError:
                 return await ctx.send((f"**{heroname.title()}** not in pool of heroes"))
-            get_user['top_5_heroes'].remove(heroname.title())
             await Doto().by_id(ctx.author.id).update(get_user)
             return await ctx.send(f"**{heroname.title()}** has been removed from pool of heroes")
         #Message if user not registered
@@ -149,14 +143,13 @@ class HeroCommand(commands.Cog):
     @commands.command()
     async def myprofile(self, ctx):
         get_user = await Doto().by_id(ctx.author.id).get()
-        print(get_user['top_5_heroes'])
+        print(len(get_user['top_5_heroes']))
         if len(get_user.get('top_5_heroes')) == 0:
             await ctx.send("Please add hero with **!addhero**")
         doto = '\n'.join(get_user['top_5_heroes'])
         #image = data['profile_image']
-
         embed = discord.Embed(title=get_user['steam_name'], description="Displaying data for user", colour=discord.Colour.teal(), timestamp=timestamp)
-        embed.add_field(name = "Position", value = 1)
+        #embed.add_field(name = "Position", value = 1)
         embed.add_field(name="__**Top 5**__", value=doto)
         #embed.set_image(url=image)
         embed.set_footer(text="DotaBot")

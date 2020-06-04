@@ -42,8 +42,7 @@ class Doto:
         await dbs['dota'].insert_one(data)
 
     async def delete(self, steam_name):
-        await dbs['dota'].delete_one(self.mongo_dict)
-        #await dbs['dota'].delete_one(steam_name)
+        await dbs['dota'].delete_one({"steam_name":steam_name})
 
     async def get_all(self):
         return await db['dota'].find().to_list(length=100000)
