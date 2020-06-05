@@ -8,21 +8,17 @@ with open('heroes.json') as json_file:
         heroes.append((name['localized_name'].lower()))
     heroes.sort()
 
-#Ensure hero name passed is lowered for consistency
 # def is_valid_hero(hero_name):
-#     #return (hero_name in heroes)
-#     if any(hero_name in s for s in heroes):
+#     print(heroes)
+#     if any(hero_name == s for s in heroes) == True:
 #         return True
 #     else:
 #         return False
+#     print(any(hero_name == s for s in heroes))
 
 def is_valid_hero(hero_name):
-    print(heroes)
-    if any(hero_name == s for s in heroes) == True:
-        return True
-    else:
-        return False
-    print(any(hero_name == s for s in heroes))
+    return any(hero_name == s for s in heroes )
+
 def filter_hero(hero_name):
     filtered_heroes = []
     for e in heroes:
