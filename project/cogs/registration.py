@@ -35,7 +35,7 @@ class Registration(commands.Cog):
             '_id': ctx.author.id,
             'steam_name':steam_name,
             'top_5_heroes': [],
-            #'pos': 0, add in future
+            'pos': 0
         }
         await Doto().create(payload)
         print(f'{green}{steam_name} has been successfully entered into the data base{endc}')
@@ -52,7 +52,7 @@ class Registration(commands.Cog):
         #temp_admins = [382641335330537482, 122974788040785923 ]
         try:
             await Doto().delete(steam_name)
-            await ctx.send(f'**{steam_name} has been unregistered')
+            await ctx.send(f'**{steam_name}** has been unregistered')
         except:
             pass
     @deregister.error

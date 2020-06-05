@@ -9,13 +9,20 @@ with open('heroes.json') as json_file:
     heroes.sort()
 
 #Ensure hero name passed is lowered for consistency
+# def is_valid_hero(hero_name):
+#     #return (hero_name in heroes)
+#     if any(hero_name in s for s in heroes):
+#         return True
+#     else:
+#         return False
+
 def is_valid_hero(hero_name):
-    #return (hero_name in heroes)
-    if any(hero_name in s for s in heroes):
+    print(heroes)
+    if any(hero_name == s for s in heroes) == True:
         return True
     else:
         return False
-
+    print(any(hero_name == s for s in heroes))
 def filter_hero(hero_name):
     filtered_heroes = []
     for e in heroes:
@@ -28,3 +35,8 @@ def filter_hero(hero_name):
     #     return False
     # else:
     #     return "multiple", filtered_heroes
+
+# for x in ['', 'a', 'b', 'c', 'ab', 'bc', 'abc']:
+#   print(x in 'abc')
+
+# print('ac' in 'abc')`

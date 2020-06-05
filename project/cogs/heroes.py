@@ -102,6 +102,7 @@ class HeroCommand(commands.Cog):
     async def addhero(self, ctx, *, heroname):
         get_user = await Doto().by_id(ctx.author.id).get()
         current_heroes = [x.lower() for x in get_user['top_5_heroes']]
+        print(heroname)
         #Determine if hero name is valid
         if is_valid_hero(heroname.lower()) == False:
             return await ctx.send("Not a valid hero")
@@ -149,7 +150,7 @@ class HeroCommand(commands.Cog):
         doto = '\n'.join(get_user['top_5_heroes'])
         #image = data['profile_image']
         embed = discord.Embed(title=get_user['steam_name'], description="Displaying data for user", colour=discord.Colour.teal(), timestamp=timestamp)
-        #embed.add_field(name = "Position", value = 1)
+        embed.add_field(name = "Position", value = 0)
         embed.add_field(name="__**Top 5**__", value=doto)
         #embed.set_image(url=image)
         embed.set_footer(text="DotaBot")
