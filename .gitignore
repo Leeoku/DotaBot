@@ -17,3 +17,5 @@ env/
 lib64
 *.json
 bot-env/
+api_key.py
+bot-env
