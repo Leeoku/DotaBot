@@ -25,7 +25,7 @@ logger = log.get_logger(__name__)
 command_logger = log.get_command_logger()
 
 
-
+#Loading bar
 def printProgressBar(iteration, total, prefix= '', suffix = '', decimals = 1, length = 100, fill = "█", printEnd = "\r"):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
     filledLength = int(length * iteration // total)
@@ -40,7 +40,7 @@ def printProgressBar(iteration, total, prefix= '', suffix = '', decimals = 1, le
 
 bot = commands.Bot(command_prefix = '!')
 cogs = ['cogs.heroes', 'cogs.player_info', 'cogs.registration']
-
+#Get closest command string
 @bot.event
 async def on_command_error(ctx, exception):
     if type(exception) == commands.CommandOnCooldown:
@@ -65,7 +65,7 @@ async def on_command_error(ctx, exception):
           file=sys.stderr)
     traceback.print_exception(type(exception), exception, exception.__traceback__, file=sys.stderr) 
 
-
+#Loads the bot info
 @bot.event
 async def on_ready():
     # cache owner from appinfo
@@ -92,7 +92,7 @@ async def on_command_completion(ctx):
 
 
 
-
+#Automatic bot reloading
 @bot.command(name='reload',
              description='Reloads bot',
              aliases=['-r'],

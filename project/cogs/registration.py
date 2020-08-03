@@ -25,7 +25,7 @@ class Registration(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    #MONGO DB VERSION
+    #Create user and uploads a default payload
     @commands.command()
     async def register(self, ctx, *, steam_name=None):
         if steam_name is None:
@@ -42,7 +42,7 @@ class Registration(commands.Cog):
         await ctx.send(f'**{steam_name}** has been registered')
         return
 
-    # MONGODB VERSION
+    #Derigster command with check allowing only server admin 
     @commands.has_permissions(administrator = True)
     @commands.command()
     async def deregister(self, ctx, *, steam_name=None):

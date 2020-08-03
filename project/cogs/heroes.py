@@ -30,6 +30,7 @@ timestamp = datetime.utcnow()
 # !myprofile [User_Id] shows best heros, along with info for them, for selected user (priority)
 # !my_items {uses/wins/kd/econ} best items for selected filter/user (future)
 
+#Check to see if username is a valid existing Steam username
 async def tracker(name):
     name = name.replace("#", "%23")
     URL = f'https://steamidfinder.com/lookup/{name}/'
@@ -50,13 +51,13 @@ class HeroCommand(commands.Cog):
         self.bot = bot 
         importlib.reload(helpers.helpfunctions)
 
+#Command to check a hero name
     @commands.command()
     async def hero(self, ctx, *, arg=None):
         print ("Given arg: ", arg)
         print(filter_hero(arg))
         def check(message):
             return message.author == ctx.author and message.channel == ctx.channel
-        
         async def get_message():
             return (await self.bot.wait_for('message', check=check, timeout = 10)).content
             
@@ -66,7 +67,7 @@ class HeroCommand(commands.Cog):
             return
 
         arg = arg.lower()
-
+        #Takes the arguement after lowering and matches it to the correct dotabuff hero syntax
         if len(filter_hero(arg)) == 1:
             filter_hero_name = filter_hero(arg)[0]
             dotabuff_hero_name = filter_hero_name.replace(" ", "-").lower()
@@ -94,8 +95,8 @@ class HeroCommand(commands.Cog):
 
             await ctx.send(f'Dotabuff: {dotabuff_link}\n DotaWiki: {dotawiki_link}') 
             return
-
-        else: # No matched heros
+        # No matched heros
+        else: 
             await ctx.send('No matched heroes')
 
     @commands.command()
@@ -141,6 +142,7 @@ class HeroCommand(commands.Cog):
         #Message if user not registered
         return await ctx.send('Please Register First')
 
+    #Create a discord bot embed message with your profile info
     @commands.command()
     async def myprofile(self, ctx):
         get_user = await Doto().by_id(ctx.author.id).get()
