@@ -4,8 +4,9 @@ import uvloop
 import pymongo
 import asyncio
 
-
+#CHANGE THE CLUSTER ARGUEMENT TO cluster['YOUR CLUSTER])
 db = cluster['leeoku']
+#CHANGE NAME OF YOUR DB TO (db."YOUR DB")
 dbs = {
     'dota':db.dota, 
     }
