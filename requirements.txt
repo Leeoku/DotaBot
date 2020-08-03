@@ -27,7 +27,6 @@ motor==2.1.0
 multidict==4.7.5
 packaging==20.3
 Pillow==7.1.2
-pkg-resources==0.0.0
 pluggy==0.13.1
 py==1.8.1
 pycparser==2.20

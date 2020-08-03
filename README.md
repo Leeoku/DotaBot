@@ -14,7 +14,7 @@ A personal Discord bot to work with my first API, Discord. This bot can help gen
 
 This bot only runs in linux based systems due to a package called uvloop
 
-Get your own discord bot token following a guide such as <a href = 'https://www.writebots.com/discord-bot-token/'>this y</a>
+Get your own discord bot token following a guide such as <a href = 'https://www.writebots.com/discord-bot-token/'>this</a>
 * Update your discord bot token in /helpers/api_key.py
 
 
@@ -31,7 +31,7 @@ To run the bot
 
 ## Technologies
 * Python 3
-* <a href = 'https://discordpy.readthedocs.io/en/latest/'>Discord.py</a> - Parsing the .doc file
+* <a href = 'https://discordpy.readthedocs.io/en/latest/'>Discord.py</a>
 
 ## Database
 * MongoDB with pymongo
