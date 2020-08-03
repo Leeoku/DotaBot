@@ -1,3 +1,5 @@
+![Alt text](/dotabotlogo.png "Title")
+
 # DotaBot, a Dota Discord Bot
 
 A personal Discord bot to work with my first API, Discord. This bot can help generate links, register users and create simple profiles
