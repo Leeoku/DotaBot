@@ -6,6 +6,7 @@ import uvloop
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-discord_key = "YOUR DISCORD KEY HERE"
-cluster = AsyncIOMotorClient('YOUR MONGO CONNECTION HERE')
+# discord_key = "YOUR DISCORD KEY HERE"
+# cluster = AsyncIOMotorClient('YOUR MONGO CONNECTION HERE')
+
 
