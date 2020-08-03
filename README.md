@@ -12,26 +12,14 @@ A personal Discord bot to work with my first API, Discord. This bot can help gen
 
 ## Quickstart
 
-This bot only runs in linux based systems due to a package called uvloop
-
-Get your own discord bot token following a guide such as <a href = 'https://www.writebots.com/discord-bot-token/'>this</a>
-* Update your discord bot token in /helpers/api_key.py
-
-
-To connect to your own mongo connection, create your own cluster and database
-* Update line 7, 9 of /helpers/dbase.py to your own cluster & database
-* Update your mongo client connection in /helpers/api_key.py
-
-To run the bot
-* Ensure python 3 is installed 
-* Create a virtual environment and start it
-* pip install -r requirements.txt
-* Change directory to project
-* python3 main.py
+The environment is containerized in Docker. To run the bot using Docker
+* update /docker-compose.yml
+* run `docker-compose up --build `
 
 ## Technologies
 * Python 3
 * <a href = 'https://discordpy.readthedocs.io/en/latest/'>Discord.py</a>
+* Docker
 
 ## Database
 * MongoDB with pymongo

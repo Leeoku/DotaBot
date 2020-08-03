@@ -150,7 +150,7 @@ class HeroCommand(commands.Cog):
         doto = '\n'.join(get_user['top_5_heroes'])
         #image = data['profile_image']
         embed = discord.Embed(title=get_user['steam_name'], description="Displaying data for user", colour=discord.Colour.teal(), timestamp=timestamp)
-        embed.add_field(name = "Position", value = 0)
+        # embed.add_field(name = "Position", value = 0)
         embed.add_field(name="__**Top 5**__", value=doto)
         #embed.set_image(url=image)
         embed.set_footer(text="DotaBot")

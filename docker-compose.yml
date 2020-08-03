@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  dotabot:
+    build: .
+    image: dotabot
+    environment:
+      - DISCORD_TOKEN=NzA3Njc4NTAwMzQ1MDg2MDM0.XrMjlg.BzObfVulBw3akP_SprrNdFNPTCI
+      - MONGO_URL=mongodb://mongo/test
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
