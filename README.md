@@ -4,6 +4,7 @@
 
 A personal Discord bot to work with my first API, Discord. This bot can help generate links, register users and create simple profiles
 
+<a href = 'https://www.loom.com/share/a7efdbe134d245a6a212e691213ef778'>Demo</a>
 ## Features
 * `!hero` to get Dotabuff links and DotaWiki links for your hero
 * `!register` to create a profile on the bot's database
@@ -13,9 +14,12 @@ A personal Discord bot to work with my first API, Discord. This bot can help gen
 ## Quickstart
 
 ```
-Ensure python 3 is installed
-python3 -m virtualenv
+This bot only runs in linux based systems due to a package called uvloop
+
+Ensure python 3 is installed 
+Create a virtual environment and start it
 pip install -r requirements.txt
+Change directory to project
 python3 main.py
 ```
 

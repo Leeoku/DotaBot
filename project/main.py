@@ -11,7 +11,7 @@ from helpers.api_key import discord_key
 import os
 import aiohttp
 import utils
-import difflib 
+import difflib
 import asyncio
 import uvloop
 from helpers import log
@@ -20,31 +20,46 @@ from time import time
 import logging
 
 
-
 logger = log.get_logger(__name__)
 command_logger = log.get_command_logger()
 
 
-
-def printProgressBar(iteration, total, prefix= '', suffix = '', decimals = 1, length = 100, fill = "█", printEnd = "\r"):
+def printProgressBar(
+    iteration,
+    total,
+    prefix="",
+    suffix="",
+    decimals=1,
+    length=100,
+    fill="█",
+    printEnd="\r",
+):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
     filledLength = int(length * iteration // total)
-    bar = fill * filledLength + '-' * (length - filledLength)
-    if iteration == total: 
-        print(f'\r{purple}Loading Complete:             |{bar}| {percent}% {suffix}{endc}', end = printEnd)
+    bar = fill * filledLength + "-" * (length - filledLength)
+    if iteration == total:
+        print(
+            f"\r{purple}Loading Complete:             |{bar}| {percent}% {suffix}{endc}",
+            end=printEnd,
+        )
     elif iteration in [0, 1]:
-        print(f'\r{purple}{prefix} |{bar}| {percent}%   {suffix}{endc}', end = printEnd)
+        print(f"\r{purple}{prefix} |{bar}| {percent}%   {suffix}{endc}", end=printEnd)
     else:
-        print(f'\r{purple}{prefix} |{bar}| {percent}%  {suffix}{endc}', end = printEnd)
+        print(f"\r{purple}{prefix} |{bar}| {percent}%  {suffix}{endc}", end=printEnd)
 
 
-bot = commands.Bot(command_prefix = '!')
-cogs = ['cogs.heroes', 'cogs.player_info', 'cogs.registration']
+bot = commands.Bot(command_prefix="!")
+cogs = ["cogs.heroes", "cogs.player_info", "cogs.registration"]
+
 
 @bot.event
 async def on_command_error(ctx, exception):
     if type(exception) == commands.CommandOnCooldown:
-        await ctx.send("!{} is on cooldown for {:0.2f} seconds.".format(ctx.command, exception.retry_after))
+        await ctx.send(
+            "!{} is on cooldown for {:0.2f} seconds.".format(
+                ctx.command, exception.retry_after
+            )
+        )
     elif type(exception) == commands.CommandNotFound:
         cmd = ctx.message.content.split()[0][1:]
         try:
@@ -52,18 +67,21 @@ async def on_command_error(ctx, exception):
         except IndexError:
             await ctx.send("!{} is not a known command.".format(cmd))
         else:
-            await ctx.send("!{} is not a command, did you mean !{}?".format(cmd, closest))
+            await ctx.send(
+                "!{} is not a command, did you mean !{}?".format(cmd, closest)
+            )
     elif type(exception) == commands.CheckFailure:
-        await ctx.send("You failed to meet a requirement for that ""command.")
+        await ctx.send("You failed to meet a requirement for that " "command.")
     elif type(exception) == commands.MissingRequiredArgument:
-        await ctx.send("You are missing a required argument for that ""command.")
+        await ctx.send("You are missing a required argument for that " "command.")
     elif type(exception) == commands.BadArgument:
         await ctx.send("Invalid Argument.")
     else:
         pass
-    print('Ignoring exception in command {}'.format(ctx.command),
-          file=sys.stderr)
-    traceback.print_exception(type(exception), exception, exception.__traceback__, file=sys.stderr) 
+    print("Ignoring exception in command {}".format(ctx.command), file=sys.stderr)
+    traceback.print_exception(
+        type(exception), exception, exception.__traceback__, file=sys.stderr
+    )
 
 
 @bot.event
@@ -91,29 +109,28 @@ async def on_command_completion(ctx):
         command_logger.info(log.log_command(ctx))
 
 
-
-
-@bot.command(name='reload',
-             description='Reloads bot',
-             aliases=['-r'],
-             hidden=True,
-             case_insensitive=True)
+@bot.command(
+    name="reload",
+    description="Reloads bot",
+    aliases=["-r"],
+    hidden=True,
+    case_insensitive=True,
+)
 async def reload(ctx):
     """ Reloads cogs while bot is still online """
     user = ctx.author
     roles = ctx.message.author.roles
     server_id = ctx.guild.id
-    updated_cogs = ''
+    updated_cogs = ""
     print(bot.loop)
     l = len(cogs)
-    printProgressBar(0, l, prefix = 'Initializing:', suffix = 'Complete', length = 50)
+    printProgressBar(0, l, prefix="Initializing:", suffix="Complete", length=50)
     for i, cog in enumerate(cogs):
-        printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
+        printProgressBar(i + 1, l, prefix="Progress:", suffix="Complete", length=50)
         bot.unload_extension(cog)
         bot.load_extension(cog)
-        updated_cogs += f'{cog}\n'
+        updated_cogs += f"{cog}\n"
     await ctx.send(f"`Cogs reloaded by:` <@{user.id}>")
-
 
 
 # @bot.command()
@@ -137,8 +154,8 @@ if __name__ == "__main__":
             logger.error(f"Error loading [ {extension} ]")
             traceback.print_exception(type(error), error, error.__traceback__)
     bot.run(discord_key, bot=True, reconnect=True)
-    
-'''
+
+"""
 @bot.command()
 async def hero(ctx, *, arg=None):
     if arg != None:
@@ -164,5 +181,4 @@ async def hero(ctx, *, arg=None):
         await ctx.send(f'Dotabuff: {dotabuff_link}\n DotaWiki: {dotawiki_link}')
     else:
         #print(filtered)
-        await ctx.send(f"Please refine your search!")'''
-
+        await ctx.send(f"Please refine your search!")"""
