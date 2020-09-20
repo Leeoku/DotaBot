@@ -5,6 +5,8 @@
 A personal Discord bot to work with my first API, Discord. This bot can help generate links, register users and create simple profiles
 
 <a href = 'https://www.loom.com/share/a7efdbe134d245a6a212e691213ef778'>Demo</a>
+<a href = 'https://top.gg/bot/471769821546283049'>Invite to your Discord server!</a>
+
 ## Features
 * `!hero` to get Dotabuff links and DotaWiki links for your hero
 * `!register` to create a profile on the bot's database
