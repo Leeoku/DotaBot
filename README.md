@@ -27,7 +27,7 @@ python3 main.py
 
 ## Technologies
 * Python 3
-* <a href = 'https://discordpy.readthedocs.io/en/latest/'>Discord.py</a> - Parsing the .doc file
+* <a href = 'https://discordpy.readthedocs.io/en/latest/'>Discord.py</a>
 
 ## Database
 * MongoDB with pymongo
