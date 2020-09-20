@@ -15,15 +15,22 @@ A personal Discord bot to work with my first API, Discord. This bot can help gen
 
 ## Quickstart
 
-```
-This bot only runs in linux based systems due to a package called uvloop
+#### Container instructions
+* ```docker-compose up --build``` (first build)
+* Afterwards, just ```docker-compose up```
 
-Ensure python 3 is installed 
-Create a virtual environment and start it
-pip install -r requirements.txt
-Change directory to project
-python3 main.py
-```
+
+#### Original instructions for local running
+
+This bot only runs in linux based systems due to a package called uvloop. Recommend to use container
+
+* Ensure python 3 is installed 
+* Create a virtual environment and start it
+* ```pip install -r requirements.txt```
+* Change directory to project
+* ```python3 main.py```
+
+
 
 ## Technologies
 * Python 3
